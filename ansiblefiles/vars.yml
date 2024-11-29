@@ -1,0 +1,2 @@
+html_file: "akatsuki.html"
+nginx_root: "/var/www/html"

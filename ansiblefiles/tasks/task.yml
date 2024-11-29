@@ -1,0 +1,23 @@
+- name: Update
+  ansible.builtin.yum:
+    name: "*"
+    state: latest
+
+- name: Install nginx
+  ansible.builtin.yum:
+    name: httpd 
+    state: present
+  when: ansible_os_family != "Amazon"
+  tags: install_httpd
+  
+- name: Start and enable the service
+  ansible.builtin.service:
+    name: httpd 
+    state: started 
+    enabled: yes 
+
+- name: copY the file to nginx_root 
+  ansible.builtin.copy:
+    src: "files/{{ html_file }}"
+    dest: "{{ nginx_root }}/akatsuki.html"
+    mode: '0644'

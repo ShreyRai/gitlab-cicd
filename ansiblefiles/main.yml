@@ -1,0 +1,9 @@
+- name: Installing nginx to terraform created ec2
+  hosts: ec2
+  become: yes 
+  vars_files:
+    - vars.yml
+  tasks: 
+    - include_tasks: tasks/task.yml
+  
+    
